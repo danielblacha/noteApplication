@@ -38,8 +38,8 @@ public class NoteController {
     }
 
     //update note by id
-    @PostMapping("/notes/{id}")
-    public Note updateNoteById(@PathVariable(value = "id") Long noteId, Note noteDetails) {
+    @PutMapping("/notes/{id}")
+    public Note updateNoteById(@PathVariable(value = "id") Long noteId, @Valid @RequestBody Note noteDetails) {
 
         Note note = noteRepository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));

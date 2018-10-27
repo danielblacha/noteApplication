@@ -35,6 +35,7 @@ public class Note {
     @LastModifiedDate
     private Date updateAt;
 
+
     public Long getId() {
         return id;
     }
