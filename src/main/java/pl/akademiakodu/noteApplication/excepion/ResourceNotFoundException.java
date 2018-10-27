@@ -9,7 +9,7 @@ public class ResourceNotFoundException extends RuntimeException {
     private String fileName;
     private Object fieldValue;
 
-    private ResourceNotFoundException(String resourceName, String fileName, Object fieldValue) {
+    public ResourceNotFoundException(String resourceName, String fileName, Object fieldValue) {
         super(String.format("%s not found with %s : '%s'", resourceName, fileName, fieldValue));
         this.resourceName = resourceName;
         this.fileName = fileName;
