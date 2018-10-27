@@ -13,6 +13,9 @@ public class Note {
     private Long id;
 
     @NotBlank
+    private String title;
+
+    @NotBlank
     private String content;
 
     @Column(nullable = false, updatable = false)
@@ -49,5 +52,13 @@ public class Note {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

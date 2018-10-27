@@ -1,11 +1,9 @@
 package pl.akademiakodu.noteApplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import pl.akademiakodu.noteApplication.excepion.ResourceNotFoundException;
 import pl.akademiakodu.noteApplication.model.Note;
 import pl.akademiakodu.noteApplication.repository.NoteRepository;
@@ -38,5 +36,25 @@ public class NoteController {
         return noteRepository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));
     }
+
     //update note by id
+    @PostMapping("/notes/{id}")
+    public Note updateNoteById(@PathVariable(value = "id") Long noteId, Note noteDetails) {
+
+        Note note = noteRepository.findById(noteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));
+
+        note.setTitle(noteDetails.getTitle());
+        note.setContent(noteDetails.getContent());
+        return noteRepository.save(note);
+    }
+
+    //delete note by id
+    @DeleteMapping("/notes/{id}")
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long noteId) {
+        Note note = noteRepository.findById(noteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));
+        noteRepository.delete(note);
+        return ResponseEntity.ok().build();
+    }
 }
