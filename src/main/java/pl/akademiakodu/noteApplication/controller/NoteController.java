@@ -2,7 +2,6 @@ package pl.akademiakodu.noteApplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.akademiakodu.noteApplication.excepion.ResourceNotFoundException;
 import pl.akademiakodu.noteApplication.model.Note;
@@ -11,7 +10,8 @@ import pl.akademiakodu.noteApplication.repository.NoteRepository;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class NoteController {
 
 
